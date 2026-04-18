@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio của Nguyễn Thị Thảo Tâm – Sinh viên Digital Marketing tại Đại học FPT. Kinh nghiệm Content Creator, Video Editor, Copy Writer với dẫn chứng số liệu thực chiến.">
+    <meta name="author" content="Nguyễn Thị Thảo Tâm">
+    <meta name="theme-color" content="#ff8ca3">
+    <meta property="og:title" content="Nguyễn Thị Thảo Tâm | Marketing Portfolio">
+    <meta property="og:description" content="Sinh viên Digital Marketing với kinh nghiệm thực chiến Content Creator, Video Editor và dẫn chứng số liệu ấn tượng.">
+    <meta property="og:type" content="website">
     <title>Nguyễn Thị Thảo Tâm | Marketing Portfolio</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
     <!-- Font chữ hiện đại hỗ trợ Tiếng Việt tốt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Thư viện icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- Background Gradient Animation -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
-    <nav>
+    <nav id="main-nav">
         <div class="logo">My<span>Portfolio</span></div>
         <ul class="nav-links">
             <li><a href="#about">Giới Thiệu</a></li>
@@ -30,8 +40,8 @@
     <!-- TRANG CHỦ -->
     <section id="about" class="hero fade-in">
         <div class="hero-content">
-            <span class="badge">Thực Tập Sinh Marketing / Sinh Viên Đại học FPT</span>
-            <h1>Xin chào, mình là <br><span class="gradient-text">Nguyễn Thị Thảo Tâm</span></h1>
+            <span class="badge">✨ Thực Tập Sinh Marketing / Sinh Viên Đại học FPT</span>
+            <h1>Xin chào, mình là <br><span class="gradient-text">Nguyễn Thị Thảo Tâm</span><span class="typing-cursor"></span></h1>
             <p>Sinh viên chuyên ngành <strong>Digital Marketing</strong> với kinh nghiệm làm Content Writer trong lĩnh vực giáo dục và bán hàng, đặc biệt là mảng tiếng Anh. Mình luôn hướng đến việc tạo ra những nội dung giá trị, thu hút, với niềm đam mê được góp phần lan tỏa tri thức theo cách thiết thực và ý nghĩa.</p>
             <div class="hero-actions">
                 <a href="#projects" class="btn-primary">Xem Kinh Nghiệm Làm Việc</a>
@@ -48,20 +58,17 @@
         </div>
         
         <div class="skills-grid">
-            <!-- Kỹ năng 1 -->
             <div class="skill-card fade-in glass">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>Content & Copywriting</h3>
                 <p>Kinh nghiệm viết Content cho lĩnh vực giáo dục, bán hàng. Lên kịch bản video Facebook/TikTok, xây dựng nội dung song ngữ, tối ưu hashtag.</p>
             </div>
-            <!-- Kỹ năng 2 -->
-            <div class="skill-card fade-in glass" style="transition-delay: 0.1s;">
+            <div class="skill-card fade-in glass">
                 <i class="fa-solid fa-video"></i>
                 <h3>Video Editing & Design</h3>
                 <p>Thành thạo Capcut, Canva, Photoshop. Biên tập và chỉnh sửa video từ nguồn footage có sẵn, tối ưu hóa nội dung đa nền tảng.</p>
             </div>
-            <!-- Kỹ năng 3 -->
-            <div class="skill-card fade-in glass" style="transition-delay: 0.2s;">
+            <div class="skill-card fade-in glass">
                 <i class="fa-solid fa-users"></i>
                 <h3>Soft Skills & Languages</h3>
                 <p>Kỹ năng giao tiếp, thuyết trình, làm việc nhóm, tư duy sáng tạo. Ngoại ngữ: Tiếng Anh, Tiếng Trung.</p>
@@ -81,13 +88,13 @@
             <!-- KINH NGHIỆM 1 -->
             <div class="project-card fade-in glass">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Content Creator">
+                    <img src="cover1.jpg" alt="Content Creator">
                     <div class="project-tag">09/2023 - Nay</div>
                 </div>
                 <div class="project-info">
                     <h3 style="margin-bottom: 5px;">Content Creator</h3>
                     <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Tiệm Sách Tiếng Anh Kim Tây Nguyên</p>
-                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 20px;">
+                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
                         <li style="margin-bottom: 8px;">Xây dựng series <strong>#VietnaminEnglish</strong> – nội dung học tiếng Anh ứng dụng thực tế.</li>
                         <li style="margin-bottom: 8px;">Sản xuất nội dung song ngữ, giúp người học tiếp cận từ vựng tự nhiên.</li>
                         <li style="margin-bottom: 8px;">Đạt tương tác cao, tăng trưởng người theo dõi và nhận diện thương hiệu.</li>
@@ -97,15 +104,15 @@
             </div>
 
             <!-- KINH NGHIỆM 2 -->
-            <div class="project-card fade-in glass" style="transition-delay: 0.1s;">
+            <div class="project-card fade-in glass">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1626544827763-d516dce335e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Video Editor">
+                    <img src="cover2.jpg" alt="Video Editor">
                     <div class="project-tag">2024 - Nay</div>
                 </div>
                 <div class="project-info">
                     <h3 style="margin-bottom: 5px;">Video Editor</h3>
                     <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Công ty Hạt Giống Phương Nam</p>
-                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 20px;">
+                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
                         <li style="margin-bottom: 8px;">Quản lý 3 Fanpage. Lên kịch bản, chỉnh sửa và tối ưu video TikTok/Facebook.</li>
                         <li style="margin-bottom: 8px;">Phát triển nội dung organic, tăng <strong>25.000 follower</strong> tự nhiên không sử dụng QC.</li>
                         <li style="margin-bottom: 8px;">Tối ưu hashtag, duy trì lượng tiếp cận và hỗ trợ tăng quy mô doanh thu.</li>
@@ -115,15 +122,15 @@
             </div>
 
             <!-- KINH NGHIỆM 3 -->
-            <div class="project-card fade-in glass" style="transition-delay: 0.2s;">
+            <div class="project-card fade-in glass">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Copy Writer">
+                    <img src="cover3.jpg" alt="Copy Writer">
                     <div class="project-tag">09/2024 - 01/2025</div>
                 </div>
                 <div class="project-info">
                     <h3 style="margin-bottom: 5px;">Copy Writer</h3>
                     <p style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">CLB Sách Tiếng Anh cho trẻ em Free-club</p>
-                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 20px;">
+                    <ul style="text-align: left; margin-left: 20px; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
                         <li style="margin-bottom: 8px;">Duy trì tần suất đăng tải 3 bài/tuần nhằm quảng bá và chia sẻ mẹo học tập.</li>
                         <li style="margin-bottom: 8px;">Tăng trưởng trang từ <strong>20.000 lên 23.000 người theo dõi</strong> trong vòng 4 tháng.</li>
                         <li style="margin-bottom: 8px;">Phát triển nội dung organic hoàn toàn không sử dụng quảng cáo.</li>
@@ -146,22 +153,21 @@
             </p>
             
             <div class="social-links" style="margin-top: 20px;">
-                <a href="mailto:nguyentttam0503@gmail.com" target="_blank" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="tel:0917365396" target="_blank" class="social-icon" title="Điện thoại"><i class="fa-solid fa-phone"></i></a>
-                <!-- Thêm link MXH của bạn vào thuộc tính href thay cho dấu # -->
-                <a href="https://www.facebook.com/profile.php?id=100009116591297" target="_blank" class="social-icon" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="mailto:nguyentttam0503@gmail.com" class="social-icon" data-tooltip="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="tel:0917365396" class="social-icon" data-tooltip="Gọi điện" aria-label="Điện thoại"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100009116591297" target="_blank" rel="noopener" class="social-icon" data-tooltip="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
             </div>
             
-            <p style="margin-top: 2rem; color: #888; font-size: 0.9rem;">
-                © 2026 Portfolio. Coded with ❤️
+            <p style="margin-top: 2rem; color: #aaa; font-size: 0.85rem;">
+                © 2026 Nguyễn Thị Thảo Tâm · Coded with ❤️
             </p>
         </div>
     </section>
 
-    <!-- KẾT THÚC CÁC SECTION CHÍNH - THÊM MODAL Ở ĐÂY -->
+    <!-- MODAL -->
     <div id="project-modal" class="modal">
         <div class="modal-content glass">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span class="close-modal" onclick="closeModal()" aria-label="Đóng">&times;</span>
             <div id="modal-body">
                 <!-- Nội dung được tiêm từ JavaScript -->
             </div>

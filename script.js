@@ -1,50 +1,92 @@
-// Thêm hiệu ứng xuất hiện từ từ (fade in) khi bạn cuộn trang xuống
-document.addEventListener("DOMContentLoaded", function() {
-    // Tìm tất cả các thành phần có class "fade-in"
-    const fadeElements = document.querySelectorAll('.fade-in');
+/* ============================================
+   PORTFOLIO - PREMIUM INTERACTIVE ENGINE
+   ============================================ */
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    // ========================
+    // 1. SCROLL PROGRESS BAR
+    // ========================
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        if (progressBar) progressBar.style.width = scrollPercent + '%';
+    }, { passive: true });
+
+    // ========================
+    // 2. NAV SCROLL EFFECT
+    // ========================
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }, { passive: true });
+
+    // ========================
+    // 3. SMOOTH SCROLL FOR NAV LINKS
+    // ========================
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================
+    // 4. FADE-IN OBSERVER (Intersection Observer)
+    // ========================
+    const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Khi thành phần đó xuất hiện trên màn hình
             if (entry.isIntersecting) {
-                // Thêm class 'visible' để kích hoạt hiệu ứng CSS
                 entry.target.classList.add('visible');
-                // Tùy chọn: dừng theo dõi sau khi đã xuất hiện
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1 // 10% phần tử xuất hiện trên màn hình thì chạy hiệu ứng
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
+    fadeElements.forEach(el => observer.observe(el));
 
-    // HIỆU ỨNG HOA ANH ĐÀO RƠI
+    // ========================
+    // 5. SAKURA PETALS (Improved)
+    // ========================
     createSakuraPetals();
+
+    // ========================
+    // 6. ESC KEY TO CLOSE MODAL
+    // ========================
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
 });
 
+// SAKURA PETALS ENGINE
 function createSakuraPetals() {
-    const sakuraCount = 25; // Số lượng hoa anh đào
-    const body = document.querySelector('body');
-    for (let i = 0; i < sakuraCount; i++) {
-        let petal = document.createElement('div');
+    const count = window.innerWidth < 768 ? 12 : 22;
+    const body = document.body;
+
+    for (let i = 0; i < count; i++) {
+        const petal = document.createElement('div');
         petal.classList.add('sakura-petal');
-        
-        let size = Math.random() * 10 + 8; // Size từ 8px đến 18px
+
+        const size = Math.random() * 10 + 8;
         petal.style.width = `${size}px`;
         petal.style.height = `${size}px`;
-        
-        let leftPosition = Math.random() * 100; // Xuất hiện ngẫu nhiên theo chiều ngang
-        petal.style.left = `${leftPosition}vw`;
-        
-        let delay = Math.random() * 10; // Thời gian trễ
-        petal.style.animationDelay = `${delay}s`;
-        
-        let duration = Math.random() * 5 + 7; // Rơi trong 7s - 12s
-        petal.style.animationDuration = `${duration}s`;
-        
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDelay = `${Math.random() * 12}s`;
+        petal.style.animationDuration = `${Math.random() * 6 + 8}s`;
+        petal.style.opacity = (Math.random() * 0.4 + 0.3).toFixed(2);
+
         body.appendChild(petal);
     }
 }
@@ -210,19 +252,21 @@ const projectData = {
     }
 };
 
-// HÀM MỞ MODAL
+// ========================
+// HÀM MỞ MODAL (Premium Animation)
+// ========================
 window.openModal = function(projectId) {
     const data = projectData[projectId];
-    if(!data) return;
-    
-    let statsHtml = data.stats.map(s => `
+    if (!data) return;
+
+    const statsHtml = data.stats.map(s => `
         <div class="stat-box">
             <h4>${s.value}</h4>
             <p style="margin:0; font-size: 0.9rem;">${s.label}</p>
         </div>
     `).join('');
 
-    const modalBody = document.getElementById("modal-body");
+    const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
         <h2 style="color: var(--text-primary); margin-bottom: 10px; font-size: clamp(1.5rem, 3vw, 2rem);">${data.title}</h2>
         <p style="font-size: 1.1rem; color: var(--text-secondary);">${data.description}</p>
@@ -231,22 +275,39 @@ window.openModal = function(projectId) {
             ${data.details}
         </div>
     `;
-    
-    document.getElementById("project-modal").style.display = "block";
-    document.body.style.overflow = "hidden"; // Ngăn cuộn trang
-}
 
+    const modal = document.getElementById('project-modal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Smooth scroll modal to top
+    const content = modal.querySelector('.modal-content');
+    if (content) content.scrollTop = 0;
+};
+
+// ========================
 // HÀM ĐÓNG MODAL
+// ========================
 window.closeModal = function() {
-    document.getElementById("project-modal").style.display = "none";
-    document.body.style.overflow = "auto";
-}
+    const modal = document.getElementById('project-modal');
+    const content = modal.querySelector('.modal-content');
 
-// Đóng modal khi bấm ra ngoài phần nội dung đen
-window.onclick = function(event) {
-    const modal = document.getElementById("project-modal");
-    if (event.target == modal) {
-        closeModal();
+    // Fade out animation
+    if (content) {
+        content.style.animation = 'modalSlideOut 0.3s ease forwards';
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            content.style.animation = '';
+        }, 280);
+    } else {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
-}
+};
 
+// Đóng modal khi bấm ra ngoài
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('project-modal');
+    if (event.target === modal) closeModal();
+});
