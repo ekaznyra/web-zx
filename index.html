@@ -17,9 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Thư viện icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 <body>
+    <div class="glow-cursor" id="glow-cursor"></div>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
@@ -58,17 +59,17 @@
         </div>
         
         <div class="skills-grid">
-            <div class="skill-card fade-in glass">
+            <div class="skill-card fade-in glass" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>Content & Copywriting</h3>
                 <p>Kinh nghiệm viết Content cho lĩnh vực giáo dục, bán hàng. Lên kịch bản video Facebook/TikTok, xây dựng nội dung song ngữ, tối ưu hashtag.</p>
             </div>
-            <div class="skill-card fade-in glass">
+            <div class="skill-card fade-in glass" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <i class="fa-solid fa-video"></i>
                 <h3>Video Editing & Design</h3>
                 <p>Thành thạo Capcut, Canva, Photoshop. Biên tập và chỉnh sửa video từ nguồn footage có sẵn, tối ưu hóa nội dung đa nền tảng.</p>
             </div>
-            <div class="skill-card fade-in glass">
+            <div class="skill-card fade-in glass" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <i class="fa-solid fa-users"></i>
                 <h3>Soft Skills & Languages</h3>
                 <p>Kỹ năng giao tiếp, thuyết trình, làm việc nhóm, tư duy sáng tạo. Ngoại ngữ: Tiếng Anh, Tiếng Trung.</p>
@@ -86,7 +87,7 @@
         <div class="projects-grid">
             
             <!-- KINH NGHIỆM 1 -->
-            <div class="project-card fade-in glass">
+            <div class="project-card fade-in glass" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
                 <div class="project-image">
                     <img src="cover1.jpg" alt="Content Creator">
                     <div class="project-tag">09/2023 - Nay</div>
@@ -104,7 +105,7 @@
             </div>
 
             <!-- KINH NGHIỆM 2 -->
-            <div class="project-card fade-in glass">
+            <div class="project-card fade-in glass" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
                 <div class="project-image">
                     <img src="cover2.jpg" alt="Video Editor">
                     <div class="project-tag">2024 - Nay</div>
@@ -122,7 +123,7 @@
             </div>
 
             <!-- KINH NGHIỆM 3 -->
-            <div class="project-card fade-in glass">
+            <div class="project-card fade-in glass" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
                 <div class="project-image">
                     <img src="cover3.jpg" alt="Copy Writer">
                     <div class="project-tag">09/2024 - 01/2025</div>
@@ -135,7 +136,7 @@
                         <li style="margin-bottom: 8px;">Tăng trưởng trang từ <strong>20.000 lên 23.000 người theo dõi</strong> trong vòng 4 tháng.</li>
                         <li style="margin-bottom: 8px;">Phát triển nội dung organic hoàn toàn không sử dụng quảng cáo.</li>
                     </ul>
-                    <a href="javascript:void(0)" onclick="openModal('free-club')" class="read-more">📊 Xem Dẫn Chứng <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="javascript:void(0)" onclick="openModal('free-club')" class="read-more">📊 Xem Dẫn Chứng Số Liệu <i class="fa-solid fa-chart-pie"></i></a>
                 </div>
             </div>
 
@@ -174,6 +175,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="script.js?v=2.2"></script>
 </body>
 </html>

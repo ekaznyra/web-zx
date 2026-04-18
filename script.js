@@ -58,6 +58,22 @@ document.addEventListener("DOMContentLoaded", function() {
     fadeElements.forEach(el => observer.observe(el));
 
     // ========================
+    // 5. GLOWING CUSTOM CURSOR
+    // ========================
+    const cursor = document.getElementById('glow-cursor');
+    if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+            // Sử dụng requestAnimationFrame cho hiệu năng mượt hơn nếu cần, nhưng translate đơn giản cũng khá ổn
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hiệu ứng phình to chớp một cái khi click
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+    }
+
+    // ========================
     // 5. SAKURA PETALS (Improved)
     // ========================
     createSakuraPetals();
@@ -108,10 +124,79 @@ const projectData = {
                 3. <a href="https://www.facebook.com/KimTayNguyen4.0" target="_blank" style="color:var(--accent-1)">Fanpage KimTayNguyen4.0</a>
             </p>
             
-            <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">📈 Toàn cảnh Hiệu Suất Sinh Lời (Meta Insights - 90 Ngày):</h4>
-            <div style="background: #fffafb; padding: 20px; border-radius: 12px; border: 1px dashed var(--accent-2); margin-bottom: 30px; text-align: center;">
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 15px;"><b>📊 Báo cáo từ hệ thống Meta Business Suite (90 ngày gần nhất):</b></p>
-                <img src="meta.png" onerror="this.parentElement.style.display='none'" alt="Meta Insights" style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">📈 Toàn cảnh Hiệu Suất Hệ Thống (Kim Tây Nguyên):</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; text-align: center;">
+                <i class="fa-brands fa-facebook"></i> Facebook · 28 ngày qua: 21/3/2026 – 17/4/2026
+            </p>
+
+            <!-- META DASHBOARD GRID -->
+            <div class="meta-grid">
+                <!-- Lượt xem -->
+                <div class="meta-card">
+                    <div class="meta-label">👁️ Lượt xem</div>
+                    <div class="meta-value">2,6 Triệu</div>
+                    <div class="meta-sub" style="margin-top: 10px;">Người xem: 462.133</div>
+                    <div class="mini-bar-chart">
+                        <div class="mini-bar" style="height:35%"></div>
+                        <div class="mini-bar" style="height:50%"></div>
+                        <div class="mini-bar" style="height:40%"></div>
+                        <div class="mini-bar" style="height:80%"></div>
+                        <div class="mini-bar" style="height:60%"></div>
+                        <div class="mini-bar" style="height:30%"></div>
+                        <div class="mini-bar" style="height:25%"></div>
+                        <div class="mini-bar" style="height:20%"></div>
+                    </div>
+                </div>
+
+                <!-- Lượt tương tác -->
+                <div class="meta-card">
+                    <div class="meta-label">❤️ Lượt tương tác</div>
+                    <div class="meta-value">30,1K</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 3,2%</span>
+                    <div class="meta-sub">
+                        Từ người theo dõi: <strong>15.360</strong> <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 13,2%</span><br>
+                        Từ người chưa theo dõi: <strong>14.697</strong>
+                    </div>
+                </div>
+
+                <!-- Lượt truy cập -->
+                <div class="meta-card">
+                    <div class="meta-label">🔗 Lượt truy cập trang</div>
+                    <div class="meta-value">52,6K</div>
+                    <div class="mini-bar-chart">
+                        <div class="mini-bar" style="height:40%"></div>
+                        <div class="mini-bar" style="height:60%"></div>
+                        <div class="mini-bar" style="height:55%"></div>
+                        <div class="mini-bar" style="height:80%"></div>
+                        <div class="mini-bar" style="height:70%"></div>
+                        <div class="mini-bar" style="height:45%"></div>
+                        <div class="mini-bar" style="height:35%"></div>
+                        <div class="mini-bar" style="height:30%"></div>
+                    </div>
+                </div>
+
+                <!-- Lượt theo dõi -->
+                <div class="meta-card">
+                    <div class="meta-label">👥 Lượt theo dõi mới</div>
+                    <div class="meta-value">2,9K</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 14,6%</span>
+                    <div class="meta-sub">
+                        Tổng followers thực: <strong>2.624</strong> <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 12,5%</span><br>
+                        Lượt bỏ theo dõi: 305 <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 36,2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DONUT: ORGANIC VS FOLLOWER -->
+            <div style="background: linear-gradient(135deg,#fffafb,#fff5f7); padding: 18px; border-radius: 14px; border: 1px solid #ffe3e8; margin: 20px 0;">
+                <div class="meta-label" style="font-size:0.85rem; color:var(--text-secondary); font-weight:600; margin-bottom: 10px;">📊 Phân bổ nguồn lượt xem</div>
+                <div class="donut-container">
+                    <div class="donut" style="background: conic-gradient(var(--accent-1) 0% 58.8%, #e5e7eb 58.8% 100%);"><div class="donut-inner">58,8%</div></div>
+                    <div>
+                        <div style="font-size:0.9rem; margin-bottom:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--accent-1);border-radius:50%;margin-right:6px;"></span><strong>58,8%</strong> Từ người chưa theo dõi <em style="color:#22c55e; font-size:0.8rem;">(Organic Reach)</em></div>
+                        <div style="font-size:0.9rem;"><span style="display:inline-block;width:10px;height:10px;background:#e5e7eb;border-radius:50%;margin-right:6px;"></span><strong>41,2%</strong> Từ người theo dõi <em style="color:#22c55e; font-size:0.8rem;">(↑13,1%)</em></div>
+                    </div>
+                </div>
             </div>
             
             <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Một số nội dung tiêu biểu từ fanpage:</h4>
@@ -186,12 +271,101 @@ const projectData = {
             </p>
             
             <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">📈 Toàn cảnh Hiệu Suất Tăng Trưởng (Đà Lạt Farm):</h4>
-            <div style="background: #fffafb; padding: 20px; border-radius: 12px; border: 1px dashed var(--accent-2); margin-bottom: 30px; text-align: center;">
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 15px;"><b>📊 Báo cáo Meta Insights – Tăng trưởng phi mã 392%:</b></p>
-                <img src="meta_dalat.png" onerror="this.parentElement.style.display='none'" alt="Đà Lạt Farm Meta" style="width: 100%; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <div style="margin-top: 15px; text-align: left; background: rgba(255,140,163,0.1); padding: 15px; border-radius: 10px; border: 1px solid var(--accent-1);">
-                    <h5 style="color: var(--accent-1); font-size: 1.1rem; margin-bottom: 5px;">🔥 Điểm nhấn Chuyển đổi Kinh doanh:</h5>
-                    <p style="margin:0; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">Bằng chiến lược nội dung Video đánh đúng tệp khách hàng mua hạt giống hữu cơ, mức độ phủ sóng của page đã dẫn đến sự bùng nổ doanh thu bán hàng qua Facebook: Tăng vọt từ mức <strong>500.000 VNĐ/tháng (Tháng 1)</strong> lên đến <strong>11.000.000 VNĐ/tháng (Tổng kết Tháng 3)</strong>, một hiệu suất tăng trưởng không tưởng đối với mảng Nông nghiệp Cây trồng!</p>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; text-align: center;">
+                <i class="fa-brands fa-facebook"></i> Facebook · 28 ngày qua: 21/3/2026 – 17/4/2026
+            </p>
+
+            <!-- META DASHBOARD GRID -->
+            <div class="meta-grid">
+                <!-- Lượt xem -->
+                <div class="meta-card">
+                    <div class="meta-label">👁️ Lượt xem</div>
+                    <div class="meta-value">8,5 Triệu</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 393%</span>
+                    <div class="meta-sub">Người xem: 3.974.356 <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 343,1%</span></div>
+                    <div class="mini-bar-chart">
+                        <div class="mini-bar" style="height:15%"></div>
+                        <div class="mini-bar" style="height:18%"></div>
+                        <div class="mini-bar" style="height:12%"></div>
+                        <div class="mini-bar" style="height:25%"></div>
+                        <div class="mini-bar" style="height:45%"></div>
+                        <div class="mini-bar" style="height:60%"></div>
+                        <div class="mini-bar" style="height:100%"></div>
+                        <div class="mini-bar" style="height:85%"></div>
+                    </div>
+                </div>
+
+                <!-- Lượt tương tác -->
+                <div class="meta-card">
+                    <div class="meta-label">❤️ Lượt tương tác</div>
+                    <div class="meta-value">119,2K</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 416,8%</span>
+                    <div class="meta-sub">
+                        Từ người theo dõi: <strong>5.110</strong> <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 415,1%</span><br>
+                        Từ người chưa theo dõi: <strong>114.109</strong> <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 416,8%</span>
+                    </div>
+                </div>
+
+                <!-- Lượt truy cập -->
+                <div class="meta-card">
+                    <div class="meta-label">🔗 Lượt truy cập trang</div>
+                    <div class="meta-value">25,9K</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 243,7%</span>
+                    <div class="mini-bar-chart">
+                        <div class="mini-bar" style="height:20%"></div>
+                        <div class="mini-bar" style="height:30%"></div>
+                        <div class="mini-bar" style="height:35%"></div>
+                        <div class="mini-bar" style="height:55%"></div>
+                        <div class="mini-bar" style="height:70%"></div>
+                        <div class="mini-bar" style="height:90%"></div>
+                        <div class="mini-bar" style="height:100%"></div>
+                        <div class="mini-bar" style="height:80%"></div>
+                    </div>
+                </div>
+
+                <!-- Lượt theo dõi -->
+                <div class="meta-card">
+                    <div class="meta-label">👥 Lượt theo dõi mới</div>
+                    <div class="meta-value">10,6K</div>
+                    <span class="meta-growth"><i class="fa-solid fa-arrow-up"></i> 309,1%</span>
+                    <div class="meta-sub">
+                        Tổng followers thực: <strong>10.457</strong> <span class="meta-growth" style="font-size:0.75rem;"><i class="fa-solid fa-arrow-up"></i> 311,7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DONUT: ORGANIC VS FOLLOWER -->
+            <div style="background: linear-gradient(135deg,#fffafb,#fff5f7); padding: 18px; border-radius: 14px; border: 1px solid #ffe3e8; margin: 20px 0;">
+                <div class="meta-label" style="font-size:0.85rem; color:var(--text-secondary); font-weight:600; margin-bottom: 10px;">📊 Phân bổ nguồn lượt xem</div>
+                <div class="donut-container">
+                    <div class="donut"><div class="donut-inner">98,4%</div></div>
+                    <div>
+                        <div style="font-size:0.9rem; margin-bottom:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--accent-1);border-radius:50%;margin-right:6px;"></span><strong>98,4%</strong> Từ người chưa theo dõi <em style="color:#22c55e; font-size:0.8rem;">(Organic Reach)</em></div>
+                        <div style="font-size:0.9rem;"><span style="display:inline-block;width:10px;height:10px;background:#e5e7eb;border-radius:50%;margin-right:6px;"></span><strong>1,6%</strong> Từ người theo dõi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVENUE CHART -->
+            <div style="background: rgba(255,140,163,0.08); padding: 20px; border-radius: 14px; border: 1px solid var(--accent-1); margin-bottom: 25px;">
+                <h5 style="color: var(--accent-1); font-size: 1.1rem; margin-bottom: 12px;">🔥 Chuyển đổi Doanh thu qua Facebook</h5>
+                <div class="revenue-bar-wrap">
+                    <span class="revenue-label">Tháng 1</span>
+                    <div class="revenue-track">
+                        <div class="revenue-fill" style="width: 4.5%; background: linear-gradient(90deg, #fda4af, #fb7185);">500k</div>
+                    </div>
+                </div>
+                <div class="revenue-bar-wrap">
+                    <span class="revenue-label">Tháng 2</span>
+                    <div class="revenue-track">
+                        <div class="revenue-fill" style="width: 35%; background: linear-gradient(90deg, #fb7185, #f43f5e);">~4 Triệu</div>
+                    </div>
+                </div>
+                <div class="revenue-bar-wrap">
+                    <span class="revenue-label">Tháng 3</span>
+                    <div class="revenue-track">
+                        <div class="revenue-fill" style="width: 100%; background: linear-gradient(90deg, #f43f5e, #e11d48);">11 Triệu VNĐ 🚀</div>
+                    </div>
                 </div>
             </div>
 

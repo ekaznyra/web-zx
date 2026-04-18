@@ -24,12 +24,40 @@ html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: var(--bg-color);
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* NỀN ĐỘNG CÔ GÁI CHILL LO-FI */
+    background: url('bg_lofi.png') no-repeat center center fixed;
+    background-size: cover;
+}
+body::before {
+    content: '';
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(250, 240, 242, 0.65); /* Lớp sương mù hồng dâu nhẹ */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: -2;
+}
+
+/* TRỎ CHUỘT PHÁT SÁNG */
+.glow-cursor {
+    position: fixed; top: 0; left: 0;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(255, 140, 163, 0.25) 0%, rgba(255,140,163, 0) 60%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa con trỏ */
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    will-change: transform;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+.glow-cursor.active {
+    width: 450px; height: 450px;
+    opacity: 0.8;
 }
 
 /* SCROLL PROGRESS BAR */
@@ -66,28 +94,7 @@ body {
     100% { transform: translate(120px, 120vh) rotate(360deg) scale(0.7); opacity: 0; }
 }
 
-/* HIỆU ỨNG NỀN GLOW CAO CẤP */
-.bg-shape {
-    position: fixed; border-radius: 50%; filter: blur(120px);
-    z-index: -1; opacity: 0.5;
-    animation: float 25s infinite alternate ease-in-out;
-    will-change: transform;
-}
-.shape-1 {
-    top: -15%; left: -10%; width: 55vw; height: 55vw;
-    background: radial-gradient(circle, var(--accent-2) 0%, rgba(255,255,255,0) 70%);
-}
-.shape-2 {
-    bottom: -15%; right: -10%; width: 60vw; height: 60vw;
-    background: radial-gradient(circle, var(--accent-1) 0%, rgba(255,255,255,0) 70%);
-    animation-delay: -12s;
-}
-
-@keyframes float {
-    0%   { transform: translate(0, 0) scale(1); }
-    50%  { transform: translate(30px, 20px) scale(1.05); }
-    100% { transform: translate(50px, 50px) scale(1); }
-}
+/* HIỆU ỨNG NỀN CŨ ĐÃ BỊ LOẠI BỎ ĐỂ THAY BẰNG LILLY LO-FI BACKGROUND */
 
 /* GLASSMORPHISM */
 .glass {
@@ -463,6 +470,107 @@ section {
     font-size: 2rem; font-weight: 800;
     background: linear-gradient(135deg, #ff6b8b, #ff9a9e);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* META INSIGHTS DASHBOARD */
+.meta-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin: 20px 0;
+}
+.meta-card {
+    background: linear-gradient(135deg, #fffafb, #fff5f7);
+    border: 1px solid #ffe3e8; border-radius: 16px;
+    padding: 20px; position: relative; overflow: hidden;
+    transition: all 0.3s ease;
+}
+.meta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255,140,163,0.15);
+}
+.meta-card .meta-label {
+    font-size: 0.85rem; color: var(--text-secondary);
+    font-weight: 600; margin-bottom: 8px;
+}
+.meta-card .meta-value {
+    font-size: 1.8rem; font-weight: 800;
+    color: var(--text-primary); line-height: 1.2;
+    margin-bottom: 4px;
+}
+.meta-card .meta-growth {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.85rem; font-weight: 700;
+    color: #22c55e; background: rgba(34,197,94,0.1);
+    padding: 3px 10px; border-radius: 20px;
+}
+.meta-card .meta-growth i { font-size: 0.7rem; }
+.meta-card .meta-sub {
+    font-size: 0.8rem; color: var(--text-secondary);
+    margin-top: 8px; line-height: 1.5;
+}
+
+/* MINI BAR CHART */
+.mini-bar-chart {
+    display: flex; align-items: flex-end;
+    gap: 6px; height: 50px; margin-top: 12px;
+}
+.mini-bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    animation: barGrow 1s ease-out forwards;
+    transform-origin: bottom;
+    opacity: 0.7; transition: opacity 0.2s;
+}
+.mini-bar:hover { opacity: 1; }
+@keyframes barGrow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+/* DONUT CHART */
+.donut-container {
+    display: flex; align-items: center; gap: 15px; margin-top: 10px;
+}
+.donut {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: conic-gradient(var(--accent-1) 0% 98.4%, #e5e7eb 98.4% 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.donut-inner {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: white; display: flex; align-items: center;
+    justify-content: center; font-size: 0.75rem;
+    font-weight: 800; color: var(--accent-1);
+}
+
+/* REVENUE CHART */
+.revenue-bar-wrap {
+    display: flex; align-items: center; gap: 12px;
+    margin: 8px 0;
+}
+.revenue-label {
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--text-secondary); min-width: 65px;
+}
+.revenue-track {
+    flex: 1; height: 28px; background: #f3f4f6;
+    border-radius: 14px; overflow: hidden; position: relative;
+}
+.revenue-fill {
+    height: 100%; border-radius: 14px;
+    display: flex; align-items: center;
+    padding-left: 12px; font-size: 0.8rem;
+    font-weight: 700; color: white;
+    animation: revenueFill 1.2s ease-out forwards;
+    transform-origin: left;
+}
+@keyframes revenueFill {
+    from { width: 0 !important; }
+}
+
+@media (max-width: 768px) {
+    .meta-grid { grid-template-columns: 1fr; }
+    .meta-card .meta-value { font-size: 1.4rem; }
 }
 
 /* TOOLTIP */
