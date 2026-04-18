@@ -6,12 +6,12 @@
 /* RESET & BIẾN CƠ BẢN */
 :root {
     --bg-color: #faf0f2;
-    --text-primary: #3a3035;
-    --text-secondary: #7a6e73;
+    --text-primary: #1a1518; /* Darkened significantly for high contrast */
+    --text-secondary: #4a3f44; /* Darkened for readability */
     --accent-1: #ff8ca3;
     --accent-2: #ffb6c1;
     --accent-3: #fecfef;
-    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-bg: rgba(255, 255, 255, 0.88); /* Increased opacity for starker background */
     --glass-border: rgba(255, 182, 193, 0.3);
     --primary: #ff8ca3;
     --shadow-soft: 0 8px 32px rgba(255, 182, 193, 0.18);
@@ -36,9 +36,9 @@ body {
 body::before {
     content: '';
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(250, 240, 242, 0.65); /* Lớp sương mù hồng dâu nhẹ */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.80); /* Trắng đục hơn để chữ nổi hẳn lên */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: -2;
 }
 
@@ -122,12 +122,13 @@ h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: var(--text
 p  { color: var(--text-secondary); margin-bottom: 15px; }
 
 .gradient-text {
-    background: linear-gradient(135deg, #ff6b8b 0%, #ff9a9e 40%, #fecfef 80%, #ff6b8b 100%);
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 40%, #e11d48 80%, #9f1239 100%); /* Magenta/Ruby sâu hơn, đậm hơn */
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: textShimmer 4s ease-in-out infinite;
+    text-shadow: 0px 4px 15px rgba(225, 29, 72, 0.2); /* Thêm bóng chữ đổ mờ để tách hẳn khỏi nền */
 }
 
 @keyframes textShimmer {
@@ -584,6 +585,31 @@ section {
     animation: tooltipIn 0.2s ease;
 }
 @keyframes tooltipIn { from { opacity: 0; transform: translateX(-50%) translateY(5px); } }
+
+/* MASONRY IMAGE GALLERY (PINTEREST STYLE) */
+.masonry-gallery {
+    columns: 2 250px;
+    column-gap: 15px;
+    padding: 5px;
+}
+.masonry-item {
+    width: 100%;
+    margin-bottom: 15px;
+    display: inline-block; /* Quan trọng để tránh bị cắt đôi hình giữa 2 cột */
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s, box-shadow 0.4s;
+    background: #fff;
+}
+.masonry-item:hover {
+    transform: scale(1.04) translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-1);
+    z-index: 2;
+    position: relative;
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

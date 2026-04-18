@@ -253,6 +253,18 @@ const projectData = {
                     </div>
                 </div>
             </div>
+            
+            <h4 style="margin-top: 30px; margin-bottom: 20px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">📸 Tủ Kính Dẫn Chứng Thành Quả</h4>
+            <div class="masonry-gallery">
+                <img class="masonry-item" src="ktn-gallery-1.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-2.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-3.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-4.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-5.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-6.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-7.jpg" onerror="this.style.display='none'">
+                <img class="masonry-item" src="ktn-gallery-8.jpg" onerror="this.style.display='none'">
+            </div>
         `
     },
     // Chừa sẵn không gian cho Dự án Hạt Giống Phương Nam
@@ -402,6 +414,8 @@ const projectData = {
                     </div>
                 </div>
             </div>
+            
+
         `
     },
     // Chừa sẵn không gian cho Dự án Free-club
@@ -422,6 +436,8 @@ const projectData = {
                     <li style="margin-bottom: 10px;"><strong>Kỹ năng thể hiện:</strong> Copywriting chuẩn SEO Facebook, lên lịch Content Calendar, duy trì tần suất đăng bài đều đặn giúp thuật toán ưu ái phân phối.</li>
                 </ul>
             </div>
+            
+
         `
     }
 };
