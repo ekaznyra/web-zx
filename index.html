@@ -38,21 +38,74 @@
         </ul>
     </nav>
 
-    <!-- TRANG CHỦ -->
+    <!-- TRANG CHỦ / AESTHETIC BENTO -->
     <section id="about" class="hero fade-in">
-        <div class="hero-content" style="display: flex; flex-direction: column; align-items: center;">
-            <!-- HERO AVATAR -->
-            <div class="hero-avatar" style="margin-bottom: 25px; width: 160px; height: 160px; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, #ff6b8b, #ff9a9e); box-shadow: 0 10px 30px rgba(255,107,139,0.3); position: relative; z-index: 2; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
-                <img src="avatar.jpg" alt="Nguyễn Thị Thảo Tâm" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid white; background: #fff;" onerror="this.src='https://via.placeholder.com/160/ffb6c1/ffffff?text=Avatar'">
+        <div class="bento-hero">
+            
+            <!-- CARD 1: MAIN PHOTO DIV -->
+            <div class="bento-card bento-main-photo glass-card">
+                <img src="hero-main.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop'" alt="Thảo Tâm" class="bento-img">
+                <div class="bento-tag">personal profile</div>
+                <div class="bento-heart"><i class="fa-solid fa-heart"></i></div>
+            </div>
+
+            <!-- CARD 2: INTRODUCTION TEXT -->
+            <div class="bento-card bento-intro glass-card">
+                <span class="badge" style="margin-bottom: 15px; align-self: flex-start; background: #e2e8f0; color: #475569; border: none;">📌 TÌM KIẾM CƠ HỘI</span>
+                <h1 style="font-size: 2.2rem; margin-bottom: 10px;">Xin chào, tôi là <br><span class="gradient-text">Nguyễn Thị Thảo Tâm</span></h1>
+                <p style="font-size: 0.95rem; line-height: 1.6;">Sinh viên chuyên ngành <strong>Digital Marketing - Đại học FPT</strong>. Tôi đam mê kiến tạo những nội dung giá trị, thu hút, với tinh thần cầu tiến và khát khao áp dụng trải nghiệm số vào thực tiễn.</p>
+                <div class="hero-actions" style="margin-top: 15px; justify-content: flex-start;">
+                    <a href="#projects" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Xem Dự Án Của Tôi</a>
+                </div>
+                
+                <!-- Aesthetic search bar -->
+                <div class="aesthetic-search">
+                    <span>Searching for creativity...</span>
+                    <i class="fa-solid fa-magnifying-glass" style="color: var(--accent-1);"></i>
+                </div>
+            </div>
+
+            <!-- CARD 3: POLAROIDS / MEMORIES -->
+            <div class="bento-card bento-polaroid">
+                <div class="polaroid-frame p1">
+                    <img src="polaroid-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=400&fit=crop'" alt="Polaroid 1">
+                </div>
+                <div class="polaroid-frame p2">
+                    <img src="polaroid-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=400&fit=crop'" alt="Polaroid 2">
+                </div>
+                <div class="decorative-icon">✨</div>
+            </div>
+
+            <!-- CARD 4: CURRENT FOCUS -->
+            <div class="bento-card bento-stats glass-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; text-align: left; padding: 25px;">
+                <div style="width: 100%;">
+                   <span style="display: inline-block; padding: 5px 12px; background: rgba(255,255,255,0.7); border-radius: 12px; font-size: 0.75rem; font-weight: 800; color: #6a8c7b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">Current Focus 🎯</span>
+                </div>
+                <h3 style="font-size: 1.05rem; line-height: 1.5; color: var(--text-primary); margin-bottom: 15px; font-weight: 700;">Không ngừng nâng cấp <br><span style="color: #4a6c5a;">Storytelling & Phân tích Data</span></h3>
+                <div style="display: flex;">
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #fecfef, #ff9a9e); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 3;">✍️</div>
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-left: -12px; z-index: 2;">📊</div>
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #d2e1dc, #8faea1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-left: -12px; z-index: 1;">🚀</div>
+                </div>
+            </div>
+
+            <!-- CARD 5: SMALL ACCENT / VIBE -->
+            <div class="bento-card bento-accent glass-card">
+                <div class="accent-header">
+                    <!-- Liên kết Avatar nếu có sẵn, hoặc dùng ảnh Demo -->
+                    <img src="avatar.jpg" class="accent-avatar" onerror="this.src='https://via.placeholder.com/40/ffb6c1'">
+                    <span style="font-size: 0.9rem;">@thaotam</span>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 15px; margin-bottom: 0px; line-height: 1.5; color: var(--text-secondary); font-style: italic;">"Khám phá và vượt qua giới hạn bản thân là hành trình thay đổi góc nhìn, dũng cảm bước ra khỏi vùng an toàn để khai phá tiềm năng vô hạn."</p>
+                <div style="position: absolute; right: 20px; bottom: 20px; background: #e2e8f0; padding: 5px; border-radius: 5px; color: #475569; font-size: 0.7rem;"><i class="fa-solid fa-envelope"></i> Send Mail</div>
+            </div>
+
+            <!-- CARD 6: COVER / SECONDARY PHOTO -->
+            <div class="bento-card bento-cover-photo glass-card" style="padding: 0; min-height: 200px;">
+                <img src="hero-cover.jpg" onerror="this.src='https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop'" alt="Workspace / Aesthetic" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" class="bento-img">
+                <div style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.7); padding: 5px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 700; color: #6a8c7b; backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-transform: lowercase;">favorite vibe 🎧</div>
             </div>
             
-            <span class="badge">✨ Thực Tập Sinh Marketing / Sinh Viên Đại học FPT</span>
-            <h1>Xin chào, tôi là <br><span class="gradient-text">Nguyễn Thị Thảo Tâm</span><span class="typing-cursor"></span></h1>
-            <p>Sinh viên chuyên ngành <strong>Digital Marketing</strong> với kinh nghiệm nền tảng về Content Writer trong lĩnh vực giáo dục và bán hàng. Tôi luôn hướng đến việc tạo ra những nội dung giá trị, thu hút, với tinh thần cầu tiến và khát khao áp dụng kiến thức vào thực tế.</p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn-primary">Xem Kinh Nghiệm Làm Việc</a>
-                <a href="#contact" class="btn-secondary">Kết Nối Ngay <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
         </div>
     </section>
 
