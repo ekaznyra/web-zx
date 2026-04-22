@@ -58,14 +58,21 @@ document.addEventListener("DOMContentLoaded", function() {
     fadeElements.forEach(el => observer.observe(el));
 
     // ========================
-    // 5. GLOWING CUSTOM CURSOR
+    // 5. GLOWING CUSTOM CURSOR & PARTICLES
     // ========================
     const cursor = document.getElementById('glow-cursor');
     if (cursor) {
+        let lastTime = 0;
         document.addEventListener('mousemove', (e) => {
-            // Sử dụng requestAnimationFrame cho hiệu năng mượt hơn nếu cần, nhưng translate đơn giản cũng khá ổn
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+            
+            const now = Date.now();
+            if (now - lastTime > 15) {
+                createTrailParticle(e.clientX, e.clientY);
+                createTrailParticle(e.clientX, e.clientY);
+                lastTime = now;
+            }
         });
 
         // Hiệu ứng phình to chớp một cái khi click
@@ -105,6 +112,32 @@ function createSakuraPetals() {
 
         body.appendChild(petal);
     }
+}
+
+// CURSOR TRAIL ENGINE
+function createTrailParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    
+    // Bảng màu cute mix giữa tone Sakura và Antigravity
+    const colors = ['#ff8ca3', '#ffb6c1', '#fecfef', '#a0c4ff', '#9bf6ff', '#ffd6a5'];
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    
+    // Random góc quay và quãng đường bay
+    const angle = Math.random() * 360;
+    const dist = Math.random() * 50 + 15; 
+    
+    particle.style.setProperty('--rot', `${angle}deg`);
+    particle.style.setProperty('--dist', `${dist}px`);
+    
+    document.body.appendChild(particle);
+    
+    setTimeout(() => {
+        particle.remove();
+    }, 800);
 }
 
 // DỮ LIỆU DỰ ÁN CHO MODAL
@@ -381,9 +414,9 @@ const projectData = {
                 </div>
             </div>
 
-            <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">🤖 Dẫn chứng Kỹ năng: Tối Ưu Chi Phí Bằng AI Video</h4>
+            <h4 style="margin-top: 20px; margin-bottom: 15px; color: var(--text-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">🤖 Thích nghi Công nghệ: Tối Ưu Nguồn Vốn Bằng AI Video</h4>
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
-                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 15px;">Bên cạnh năng lực quay dựng thông thường, mình có độ nhạy bén với công nghệ kỹ thuật số. Để <strong>tối ưu tuyệt đối chi phí sản xuất</strong> cho công ty thay vì thuê Voice Talent trọn gói, mình đã chủ động viết kịch bản và <strong>tạo hàng loạt chuỗi Video lồng giọng nói bằng AI cực kỳ tự nhiên</strong>. Dưới đây là 2 sản phẩm Video AI tạo ra chỉ số tương tác "khủng" cho kênh:</p>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 15px;">Trong quá trình làm việc, tôi luôn nỗ lực tìm tòi và áp dụng các công cụ mới để nâng cao hiệu suất. Để <strong>tối ưu chi phí sản xuất</strong> cho công ty thay vì phải thuê Voice Talent, tôi đã chủ động viết kịch bản và <strong>tạo hàng loạt chuỗi Video lồng giọng nói bằng AI cực kỳ tự nhiên</strong>. Dưới đây là 2 sản phẩm Video AI mà tôi đã thực hiện, mang lại chỉ số tương tác rất tích cực:</p>
                 
                 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
                     <!-- Video 1 -->
