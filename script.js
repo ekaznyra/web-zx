@@ -491,11 +491,25 @@ window.openModal = function(projectId) {
 
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
-        <h2 style="color: var(--text-primary); margin-bottom: 10px; font-size: clamp(1.5rem, 3vw, 2rem);">${data.title}</h2>
-        <p style="font-size: 1.1rem; color: var(--text-secondary);">${data.description}</p>
-        <div class="modal-stats">${statsHtml}</div>
-        <div class="modal-details" style="text-align: left;">
-            ${data.details}
+        <div style="display: flex; gap: 30px; position: relative;">
+            
+            <!-- CỘT NỘI DUNG CHÍNH -->
+            <div style="flex: 1; min-width: 0;">
+                <h2 style="color: var(--text-primary); margin-bottom: 10px; font-size: clamp(1.5rem, 3vw, 2rem);">${data.title}</h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary);">${data.description}</p>
+                <div class="modal-stats">${statsHtml}</div>
+                <div class="modal-details" style="text-align: left;">
+                    ${data.details}
+                </div>
+            </div>
+            
+            <!-- CỘT CHIBI CHUYÊN DỤNG (BÊN PHẢI) -->
+            <div class="chibi-side-panel" style="width: 180px; flex-shrink: 0; position: relative;">
+                <div style="position: sticky; top: 40px; pointer-events: none; animation: popUpPresenter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: bottom center;">
+                    <img src="chibi-standing-transparent.png" alt="Thảo Tâm Chibi" style="width: 100%; filter: drop-shadow(-5px 5px 12px rgba(255,107,139,0.3));" onerror="this.style.display='none'">
+                </div>
+            </div>
+            
         </div>
     `;
 
