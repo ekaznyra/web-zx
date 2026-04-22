@@ -491,7 +491,7 @@ window.openModal = function(projectId) {
 
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
-        <div style="display: flex; gap: 30px; position: relative;">
+        <div class="modal-layout-wrapper" style="display: flex; gap: 30px; position: relative;">
             
             <!-- CỘT NỘI DUNG CHÍNH -->
             <div style="flex: 1; min-width: 0;">
