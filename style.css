@@ -899,3 +899,176 @@ section {
     .stat-rings { flex-wrap: wrap; }
     .aesthetic-search { max-width: 100%; }
 }
+
+/* ============================================
+   CD AESTHETIC JOB CARDS
+   ============================================ */
+.cd-aesthetic {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b090a; /* Dark sleek bg */
+    padding: 10px;
+}
+
+.cd-bg {
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    background-image: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(60%) blur(3px) contrast(1.1) brightness(0.4);
+    opacity: 0.95;
+    z-index: 1;
+    transition: filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .cd-bg {
+    filter: grayscale(30%) blur(1px) contrast(1.2) brightness(0.65);
+}
+
+.cd-jewel-case {
+    position: relative;
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 0 20px rgba(255, 255, 255, 0.05),
+        0 15px 35px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .cd-jewel-case {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.cd-jewel-case::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.05) 5px, rgba(255,255,255,0));
+    border-right: 1px solid rgba(255,255,255,0.1);
+    z-index: 4;
+}
+
+.cd-jewel-case::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.1) 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.cd-disc {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    /* Solid black vinyl/CD base */
+    background: #111;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 0 0 3px #333, inset 0 0 0 8px #111;
+    border: 1px solid #444;
+    /* Grooves and vinyl glare */
+    background-image: repeating-radial-gradient(
+        circle at 50% 50%,
+        #111 0%,
+        #111 2%,
+        #1a1a1a 2.5%,
+        #111 3%
+    ),
+    conic-gradient(
+        from 0deg,
+        rgba(255,182,193,0.02),
+        rgba(255,255,255,0.08) 45deg,
+        rgba(255,182,193,0.02) 90deg,
+        rgba(255,255,255,0.08) 135deg,
+        rgba(255,182,193,0.02) 180deg,
+        rgba(255,255,255,0.08) 225deg,
+        rgba(255,182,193,0.02) 270deg,
+        rgba(255,255,255,0.08) 315deg,
+        rgba(255,182,193,0.02) 360deg
+    );
+    animation: spin 5s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    position: relative;
+}
+
+/* Album cover label in the middle of the vinyl/CD */
+.cd-disc::after {
+    content: '';
+    position: absolute;
+    width: 60px; height: 60px;
+    background-image: var(--card-bg); /* Use the card background as the album label! */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #ff8ca3; /* Pink accent ring */
+    z-index: 4;
+}
+
+.cd-hole {
+    position: relative;
+    z-index: 5;
+    width: 14px;
+    height: 14px;
+    background-color: #fdfbfb; /* White spindle hole to look realistic */
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.cd-vibe-text {
+    position: absolute;
+    z-index: 6;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 3.5rem;
+    color: rgba(255, 230, 235, 0.95); /* Soft, elegant pale pink-white */
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9), 2px 2px 5px rgba(0,0,0,0.6); 
+    pointer-events: none;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.cd-text-medium {
+    font-size: 3rem;
+}
+
+@media (max-width: 480px) {
+    .cd-jewel-case {
+        transform: scale(0.85); /* Slightly downscale the CD on small phones */
+    }
+    .project-card:hover .cd-jewel-case {
+        transform: scale(0.9) rotate(3deg);
+    }
+    .cd-vibe-text {
+        font-size: 2.5rem; /* Ensure massive text does not overflow */
+    }
+    .cd-text-medium {
+        font-size: 2.2rem;
+    }
+}

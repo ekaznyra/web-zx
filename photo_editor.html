@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Focus Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #1a1a1a;
+            --primary: #ffffff;
+            --accent: #ff4d4d;
+        }
+        body { 
+            margin: 0; padding: 0; 
+            background: var(--bg); 
+            color: var(--primary); 
+            font-family: 'Space Grotesk', sans-serif; 
+            display: flex; height: 100vh; overflow: hidden; 
+        }
+        .sidebar { 
+            width: 350px; 
+            background: var(--surface); 
+            padding: 2.5rem 2rem; 
+            display: flex; flex-direction: column; gap: 1.8rem; 
+            border-right: 1px solid #333; 
+            overflow-y: auto; 
+            z-index: 10;
+        }
+        .main { 
+            flex: 1; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            padding: 2rem; position: relative; 
+            background: radial-gradient(circle at center, #222 0%, #000 100%);
+        }
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.2rem; margin: 0; font-weight: normal; 
+            letter-spacing: -1px;
+        }
+        p { color: #888; font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.4; }
+        .input-group { display: flex; flex-direction: column; gap: 0.6rem; }
+        label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; font-weight: 600;}
+        input[type="text"], input[type="range"], select { 
+            width: 100%; background: #2a2a2a; border: 1px solid #444; 
+            color: white; padding: 0.8rem; border-radius: 6px; 
+            box-sizing: border-box; font-family: inherit;
+        }
+        input[type="text"]:focus, select:focus { outline: none; border-color: #fff; }
+        
+        .file-upload { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+            background: #2a2a2a; border: 2px dashed #555; 
+            padding: 2rem; border-radius: 8px; cursor: pointer; transition: 0.3s; text-align: center; 
+        }
+        .file-upload:hover { border-color: #fff; background: #333; }
+        .file-upload input { display: none; }
+        .file-upload svg { width: 30px; height: 30px; fill: #aaa; }
+        .file-upload:hover svg { fill: #fff; }
+
+        .btn { 
+            background: var(--primary); color: var(--bg); border: none; 
+            padding: 1.2rem; border-radius: 6px; font-weight: 600; 
+            cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; 
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .btn:hover { background: #ccc; transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
+        
+        .canvas-container { 
+            max-width: 100%; max-height: 100%; 
+            position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            border-radius: 4px; overflow: hidden;
+            border: 1px solid #333;
+        }
+        canvas { 
+            max-width: 100%; max-height: 100vh; 
+            display: block; object-fit: contain; cursor: crosshair;
+        }
+        
+        .hint {
+            position: absolute; bottom: 20px; text-align: center; color: #666; font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <h1>Aesthetic Focus</h1>
+            <p>Upload your portrait to create the perfect "eyes focus" magazine trend.</p>
+        </div>
+        
+        <label class="file-upload">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+            <span>Tải ảnh của bạn lên</span>
+            <input type="file" id="imageUpload" accept="image/*">
+        </label>
+
+        <div class="input-group">
+            <label>Hiệu ứng nền</label>
+            <select id="bgEffect">
+                <option value="blur-bw">Black & White Blur (Mẫu 2)</option>
+                <option value="blur-color">Color Blur (Mẫu 1)</option>
+                <option value="grain-color">Grainy Color (Mẫu 3)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Mức độ mờ (Blur)</label>
+            <input type="range" id="blurAmount" min="0" max="50" value="25">
+        </div>
+
+        <div class="input-group">
+            <label>Khung ngang/dọc</label>
+            <select id="boxType">
+                <option value="horizontal">Khung ngang (2 mắt)</option>
+                <option value="vertical">Khung dọc (1 nửa mặt)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>CHỮ TIÊU ĐỀ (Nhấn mạnh)</label>
+            <input type="text" id="largeText" value="FOCUS">
+        </div>
+        
+        <div class="input-group">
+            <label>Chú thích/Quote</label>
+            <input type="text" id="smallText" value="It's in the eyes. Always in the eyes.">
+        </div>
+
+        <button class="btn" id="downloadBtn">🌟 Tải ảnh về 🌟</button>
+        <p style="font-size: 0.8rem; color: #777;">* Hướng dẫn: Kéo thả chuột trực tiếp trên ảnh để khoanh vùng mắt!</p>
+    </div>
+
+    <div class="main">
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="hint">Made with ❤️ by AI Assistant - Kéo chuột trên ảnh để vẽ lại khung focus</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let img = new Image();
+        let currentImage = null;
+
+        // Box state
+        let box = { x: 0, y: 0, w: 0, h: 0 };
+        let isDrawing = false;
+        let startX = 0, startY = 0;
+
+        // UI Els
+        const blurAmountInput = document.getElementById('blurAmount');
+        const largeTextInput = document.getElementById('largeText');
+        const smallTextInput = document.getElementById('smallText');
+        const bgEffectInput = document.getElementById('bgEffect');
+        const boxTypeInput = document.getElementById('boxType');
+        
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                img.onload = function() {
+                    currentImage = img;
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    setDefaultBox();
+                    renderCanvas();
+                }
+                img.src = event.target.result;
+            }
+            if(e.target.files[0]) {
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        function setDefaultBox() {
+            if (!currentImage) return;
+            const w = currentImage.width;
+            const h = currentImage.height;
+            if (boxTypeInput.value === 'horizontal') {
+                box = { x: w * 0.15, y: h * 0.35, w: w * 0.7, h: h * 0.15 };
+            } else {
+                box = { x: w * 0.3, y: h * 0.1, w: w * 0.3, h: h * 0.8 };
+            }
+        }
+
+        [blurAmountInput, largeTextInput, smallTextInput, bgEffectInput, boxTypeInput].forEach(el => el.addEventListener('input', () => {
+            if (el === boxTypeInput) setDefaultBox();
+            if (currentImage) renderCanvas();
+        }));
+
+        function generateNoise(ctx, width, height) {
+            // A simple noise overlay approach: draw random dots.
+            // For performance, we can skip actual canvas noise and use an overlay or just draw it once if needed,
+            // but for a static image export, we can do it per pixel (might be slow for high res!).
+            // We'll use a fast approach: draw lots of semi-transparent black and white rects.
+            const size = 2;
+            for(let i=0; i < (width*height/80); i++) {
+                ctx.fillStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+                ctx.fillRect(Math.random()*width, Math.random()*height, size, size);
+            }
+        }
+
+        function renderCanvas() {
+            if (!currentImage) return;
+            const cw = currentImage.width;
+            const ch = currentImage.height;
+
+            // 1. Background
+            ctx.clearRect(0, 0, cw, ch);
+            ctx.filter = 'none';
+
+            let blurVal = blurAmountInput.value;
+            let effect = bgEffectInput.value;
+
+            if (effect === 'blur-bw') {
+                ctx.filter = `grayscale(100%) blur(${blurVal}px)`;
+            } else if (effect === 'blur-color') {
+                ctx.filter = `blur(${blurVal}px)`;
+            } else if (effect === 'grain-color') {
+                // we'll add noise after drawing
+                ctx.filter = `blur(${Math.max(2, blurVal/3)}px) contrast(1.2)`;
+            }
+
+            ctx.drawImage(currentImage, 0, 0);
+
+            if (effect === 'grain-color') {
+                generateNoise(ctx, cw, ch);
+            }
+
+            // Reset filter
+            ctx.filter = "none";
+
+            // 2. Draw Focus Box
+            if (box.w > 0 && box.h > 0) {
+                // Ensure box is positive
+                let drawX = box.w < 0 ? box.x + box.w : box.x;
+                let drawY = box.h < 0 ? box.y + box.h : box.y;
+                let drawW = Math.abs(box.w);
+                let drawH = Math.abs(box.h);
+
+                // Clip and draw original
+                ctx.save();
+                ctx.beginPath();
+                ctx.rect(drawX, drawY, drawW, drawH);
+                ctx.clip();
+                ctx.drawImage(currentImage, 0, 0);
+                ctx.restore();
+                
+                // Box Outline
+                ctx.lineWidth = Math.max(3, cw * 0.004);
+                ctx.strokeStyle = "white";
+                ctx.strokeRect(drawX, drawY, drawW, drawH);
+            }
+
+            // 3. Typography
+            let drawX = box.w < 0 ? box.x + box.w : box.x;
+            ctx.textAlign = "center";
+            
+            // Large Title Text
+            if (largeTextInput.value) {
+                ctx.font = `800 ${cw * 0.12}px Space Grotesk`;
+                ctx.lineWidth = Math.max(2, cw * 0.003);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+                ctx.fillStyle = "transparent";
+                ctx.strokeText(largeTextInput.value, cw / 2, ch * 0.18);
+            }
+            
+            // Small Quote Text
+            if (smallTextInput.value) {
+                ctx.font = `italic 400 ${cw * 0.025}px Playfair Display`;
+                ctx.fillStyle = "white";
+                ctx.textAlign = "left";
+                
+                // Position relative to box depending on type
+                let textX = drawX - (cw * 0.1);
+                let textY = box.y + (Math.abs(box.h) / 2);
+                if (textX < cw*0.05) textX = cw*0.05;
+
+                // Split text by newlines if we want, or just draw
+                // Rotating text like in sample 2
+                if (boxTypeInput.value === 'horizontal') {
+                    // draw rotated on the left side
+                    ctx.save();
+                    ctx.translate(drawX - (cw * 0.04), box.y + Math.abs(box.h));
+                    ctx.rotate(-Math.PI / 2);
+                    ctx.fillText(smallTextInput.value, 0, 0);
+                    ctx.restore();
+                } else {
+                    // draw normally
+                    // sample 1 split text
+                    ctx.fillText(smallTextInput.value, drawX + Math.abs(box.w) + 20, box.y + (Math.abs(box.h) / 2));
+                }
+            }
+
+            // Optional: Draw a timestamp/barcode like in Sample 2
+            ctx.fillStyle = "white";
+            ctx.textAlign = "left";
+            ctx.font = `400 ${cw * 0.015}px Space Grotesk`;
+            const date = new Date();
+            let timeStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+            ctx.fillText(timeStr, cw * 0.05, ch * 0.95);
+        }
+
+        // Mouse Events
+        function getMousePos(evt) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+                x: (evt.clientX - rect.left) * scaleX,
+                y: (evt.clientY - rect.top) * scaleY
+            };
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (!currentImage) return;
+            const pos = getMousePos(e);
+            startX = pos.x;
+            startY = pos.y;
+            isDrawing = true;
+            box = { x: startX, y: startY, w: 0, h: 0 };
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            const pos = getMousePos(e);
+            box.w = pos.x - startX;
+            box.h = pos.y - startY;
+            renderCanvas();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+        
+        // Touch events for mobile/tablet support
+        canvas.addEventListener('touchstart', (e) => {
+            if (!currentImage) return;
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }, {passive: true});
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (!isDrawing) return;
+            // Prevent scrolling while drawing on mobile
+            e.preventDefault(); 
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }, {passive: false});
+
+        canvas.addEventListener('touchend', () => {
+            canvas.dispatchEvent(new MouseEvent('mouseup'));
+        }, {passive: true});
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if (!currentImage) return alert("Vui lòng tải ảnh lên trước!");
+            const link = document.createElement('a');
+            link.download = `magazine_focus_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        // Initialize empty canvas UI
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, 800, 600);
+        ctx.fillStyle = '#444';
+        ctx.font = '24px Space Grotesk';
+        ctx.textAlign = 'center';
+        ctx.fillText('Kết quả sẽ hiển thị ở đây', 400, 300);
+    </script>
+</body>
+</html>

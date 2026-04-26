@@ -1,0 +1,97 @@
+﻿    <!-- Font chá»¯ hiá»‡n Ä‘áº¡i há»— trá»£ Tiáº¿ng Viá»‡t tá»‘t -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- ThÆ° viá»‡n icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2.5">
+</head>
+<body>
+    <div class="glow-cursor" id="glow-cursor"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Background Gradient Animation -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <nav id="main-nav">
+        <div class="logo">My<span>Portfolio</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">Giá»›i Thiá»‡u</a></li>
+            <li><a href="#skills">Ká»¹ NÄƒng</a></li>
+            <li><a href="#projects">Dá»± Ãn</a></li>
+            <li><a href="#contact" class="btn-contact">LiÃªn Há»‡</a></li>
+        </ul>
+    </nav>
+
+    <!-- TRANG CHá»¦ / AESTHETIC BENTO -->
+    <section id="about" class="hero fade-in">
+        <div class="bento-hero">
+            
+            <!-- CARD 1: MAIN PHOTO DIV -->
+            <div class="bento-card bento-main-photo glass-card">
+                <img src="hero-main.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=800&fit=crop'" alt="Tháº£o TÃ¢m" class="bento-img">
+                <div class="bento-tag">personal profile</div>
+                <div class="bento-heart"><i class="fa-solid fa-heart"></i></div>
+            </div>
+
+            <!-- CARD 2: INTRODUCTION TEXT -->
+            <div class="bento-card bento-intro glass-card">
+                <span class="badge" style="margin-bottom: 15px; align-self: flex-start; background: #e2e8f0; color: #475569; border: none;">ðŸ“Œ TÃŒM KIáº¾M CÆ  Há»˜I</span>
+                <h1 style="font-size: 2.2rem; margin-bottom: 10px;">Xin chÃ o, tÃ´i lÃ  <br><span class="gradient-text">Nguyá»…n Thá»‹ Tháº£o TÃ¢m</span></h1>
+                <p style="font-size: 0.95rem; line-height: 1.6;">Sinh viÃªn chuyÃªn ngÃ nh <strong>Digital Marketing - Äáº¡i há»c FPT</strong>. TÃ´i Ä‘am mÃª kiáº¿n táº¡o nhá»¯ng ná»™i dung giÃ¡ trá»‹, thu hÃºt, vá»›i tinh tháº§n cáº§u tiáº¿n vÃ  khÃ¡t khao Ã¡p dá»¥ng tráº£i nghiá»‡m sá»‘ vÃ o thá»±c tiá»…n.</p>
+                <div class="hero-actions" style="margin-top: 15px; justify-content: flex-start;">
+                    <a href="#projects" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Xem Dá»± Ãn Cá»§a TÃ´i</a>
+                </div>
+                
+                <!-- Aesthetic search bar -->
+                <div class="aesthetic-search">
+                    <span>Searching for creativity...</span>
+                    <i class="fa-solid fa-magnifying-glass" style="color: var(--accent-1);"></i>
+                </div>
+            </div>
+
+            <!-- CARD 3: POLAROIDS / MEMORIES -->
+            <div class="bento-card bento-polaroid">
+                <div class="polaroid-frame p1">
+                    <img src="polaroid-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=400&fit=crop'" alt="Polaroid 1">
+                </div>
+                <div class="polaroid-frame p2">
+                    <img src="polaroid-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=400&fit=crop'" alt="Polaroid 2">
+                </div>
+                <div class="decorative-icon">âœ¨</div>
+            </div>
+
+            <!-- CARD 4: CURRENT FOCUS -->
+            <div class="bento-card bento-stats glass-card" style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; text-align: left; padding: 25px;">
+                <div style="width: 100%;">
+                   <span style="display: inline-block; padding: 5px 12px; background: rgba(255,255,255,0.7); border-radius: 12px; font-size: 0.75rem; font-weight: 800; color: #6a8c7b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">Current Focus ðŸŽ¯</span>
+                </div>
+                <h3 style="font-size: 1.05rem; line-height: 1.5; color: var(--text-primary); margin-bottom: 15px; font-weight: 700;">KhÃ´ng ngá»«ng nÃ¢ng cáº¥p <br><span style="color: #4a6c5a;">Storytelling & PhÃ¢n tÃ­ch Data</span></h3>
+                <div style="display: flex;">
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #fecfef, #ff9a9e); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 3;">âœï¸</div>
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-left: -12px; z-index: 2;">ðŸ“Š</div>
+                    <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #d2e1dc, #8faea1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-left: -12px; z-index: 1;">ðŸš€</div>
+                </div>
+            </div>
+
+            <!-- CARD 5: SMALL ACCENT / VIBE -->
+            <div class="bento-card bento-accent glass-card">
+                <div class="accent-header">
+                    <!-- LiÃªn káº¿t Avatar náº¿u cÃ³ sáºµn, hoáº·c dÃ¹ng áº£nh Demo -->
+                    <img src="avatar.jpg" class="accent-avatar" onerror="this.src='https://via.placeholder.com/40/ffb6c1'">
+                    <span style="font-size: 0.9rem;">@thaotam</span>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 15px; margin-bottom: 0px; line-height: 1.5; color: var(--text-secondary); font-style: italic;">"KhÃ¡m phÃ¡ vÃ  vÆ°á»£t qua giá»›i háº¡n báº£n thÃ¢n lÃ  hÃ nh trÃ¬nh thay Ä‘á»•i gÃ³c nhÃ¬n, dÅ©ng cáº£m bÆ°á»›c ra khá»i vÃ¹ng an toÃ n Ä‘á»ƒ khai phÃ¡ tiá»m nÄƒng vÃ´ háº¡n."</p>
+                <div style="position: absolute; right: 20px; bottom: 20px; background: #e2e8f0; padding: 5px; border-radius: 5px; color: #475569; font-size: 0.7rem;"><i class="fa-solid fa-envelope"></i> Send Mail</div>
+            </div>
+
+            <!-- CARD 6: COVER / SECONDARY PHOTO -->
+            <div class="bento-card bento-cover-photo glass-card" style="padding: 0; min-height: 200px;">
+                <img src="hero-cover.jpg" onerror="this.src='https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop'" alt="Workspace / Aesthetic" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" class="bento-img">
+                <div style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.7); padding: 5px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 700; color: #6a8c7b; backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-transform: lowercase;">favorite vibe ðŸŽ§</div>
+            </div>
+            
+        </div>
+    </section>
